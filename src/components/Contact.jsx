@@ -6,64 +6,87 @@ const links = [
     handle: '@twinstack',
     href: 'https://twitter.com/twinstack',
     icon: 'X',
-    color: '#00ff88',
+    color: '#34d399',
   },
   {
     label: 'GitHub',
     handle: 'github.com/twinstack',
     href: 'https://github.com/twinstack',
     icon: 'GH',
-    color: '#00e5ff',
+    color: '#7dd3fc',
   },
   {
     label: 'Discord',
     handle: 'twinstack#0001',
     href: '#',
     icon: 'DC',
-    color: '#7c6bdb',
+    color: '#a78bfa',
   },
 ]
 
 const Contact = () => {
   return (
-    <section id="contact" className="py-32 px-6 relative">
-      <div className="max-w-6xl mx-auto">
-        <div className="flex items-center gap-4 mb-16">
-          <span className="font-mono text-xs text-[#00ff88] tracking-widest uppercase">// contact</span>
-          <div className="flex-1 h-px bg-gradient-to-r from-[#00ff88]/30 to-transparent" />
+    <section id="contact" className="py-36 px-6">
+      <div className="max-w-5xl mx-auto">
+
+        {/* Section label */}
+        <div className="flex items-center gap-4 mb-20">
+          <span
+            className="font-mono text-[10px] tracking-[0.2em] uppercase"
+            style={{ color: 'rgba(52,211,153,0.7)' }}
+          >
+            contact
+          </span>
+          <div
+            className="flex-1 h-px"
+            style={{ background: 'linear-gradient(90deg, rgba(52,211,153,0.15), transparent)' }}
+          />
         </div>
 
-        <div className="text-center max-w-2xl mx-auto">
-          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
-            Let's{' '}
+        <div className="text-center max-w-xl mx-auto">
+          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-5 tracking-tight">
+            Let&apos;s{' '}
             <ShinyText text="Connect" speed={4} className="font-bold" />
           </h2>
-          <p className="text-gray-500 mb-12 leading-relaxed">
+          <p className="text-base leading-relaxed mb-16" style={{ color: '#475569' }}>
             Fellow node runner? Got a testnet tip or want to collaborate?
-            Reach out anywhere below. Always down to talk crypto, AI, and infra.
+            Always down to talk crypto, AI, and infra.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+          {/* Social links row */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-20">
             {links.map(({ label, handle, href, icon, color }) => (
               <a
                 key={label}
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto flex items-center gap-4 glass rounded-2xl px-6 py-4 hover:scale-105 transition-transform group min-w-[200px]"
+                className="group flex items-center gap-4 px-6 py-4 rounded-2xl w-full sm:w-auto transition-all duration-200"
+                style={{
+                  background: 'rgba(255,255,255,0.02)',
+                  border: '1px solid rgba(255,255,255,0.06)',
+                  minWidth: '190px',
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.borderColor = `${color}30`
+                  e.currentTarget.style.background = `${color}08`
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)'
+                  e.currentTarget.style.background = 'rgba(255,255,255,0.02)'
+                }}
               >
                 <span
-                  className="w-10 h-10 rounded-xl flex items-center justify-center font-mono text-xs font-bold shrink-0"
-                  style={{ background: `${color}18`, color }}
+                  className="w-11 h-11 rounded-xl flex items-center justify-center font-mono text-sm font-bold shrink-0"
+                  style={{ background: `${color}12`, color }}
                 >
                   {icon}
                 </span>
                 <div className="text-left">
-                  <div className="text-xs text-gray-500 font-mono">{label}</div>
-                  <div
-                    className="text-sm font-mono font-semibold group-hover:text-white transition-colors"
-                    style={{ color }}
-                  >
+                  <div className="font-mono text-[10px] tracking-wider mb-0.5" style={{ color: '#334155' }}>
+                    {label}
+                  </div>
+                  <div className="font-mono text-sm font-medium" style={{ color }}>
                     {handle}
                   </div>
                 </div>
@@ -71,12 +94,10 @@ const Contact = () => {
             ))}
           </div>
 
-          <div className="border-t border-white/5 pt-12">
-            <p className="font-mono text-xs text-gray-600 tracking-wider">
-              BUILT BY TWINSTACK &mdash; RUNNING ON VIBES + NODES
-            </p>
-            <p className="font-mono text-xs text-gray-700 mt-2">
-              &copy; 2026 Twinstack Explorer
+          {/* Footer */}
+          <div style={{ borderTop: '1px solid rgba(255,255,255,0.05)' }} className="pt-10">
+            <p className="font-mono text-[11px] tracking-widest" style={{ color: '#1e293b' }}>
+              TWINSTACK EXPLORER &mdash; {new Date().getFullYear()}
             </p>
           </div>
         </div>
