@@ -4,17 +4,16 @@ import ShinyText from './ShinyText'
 const Hero = () => {
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6">
-      {/* Single subtle radial glow */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: 'radial-gradient(ellipse 80% 50% at 50% 40%, rgba(52,211,153,0.06) 0%, transparent 70%)',
-        }}
-      />
-
       <div className="relative z-10 text-center max-w-4xl mx-auto">
         {/* Status badge */}
-        <div className="inline-flex items-center gap-2.5 mb-10 px-4 py-2 rounded-full border border-white/8 bg-white/[0.02]">
+        <div
+          className="inline-flex items-center gap-2.5 mb-10 px-4 py-2 rounded-full"
+          style={{
+            background: 'rgba(6,6,8,0.7)',
+            border: '1px solid rgba(255,255,255,0.1)',
+            backdropFilter: 'blur(12px)',
+          }}
+        >
           <span className="w-1.5 h-1.5 rounded-full pulse-dot" style={{ background: '#34d399' }} />
           <span className="font-mono text-[11px] text-slate-400 tracking-[0.18em] uppercase">
             Crypto &amp; AI Enthusiast
@@ -43,7 +42,10 @@ const Hero = () => {
         </h1>
 
         {/* Tagline */}
-        <p className="text-slate-500 text-base sm:text-lg font-light max-w-lg mx-auto leading-relaxed mb-12">
+        <p
+          className="text-base sm:text-lg font-light max-w-lg mx-auto leading-relaxed mb-12"
+          style={{ color: 'rgba(148,163,184,0.85)' }}
+        >
           Documenting the journey of running nodes across blockchain testnets —
           one chain at a time.
         </p>
@@ -54,25 +56,33 @@ const Hero = () => {
             href="#nodes"
             className="px-8 py-3 rounded-full font-mono text-sm font-medium tracking-wider transition-all duration-200"
             style={{
-              background: 'rgba(52,211,153,0.1)',
+              background: 'rgba(52,211,153,0.12)',
               color: '#34d399',
-              border: '1px solid rgba(52,211,153,0.25)',
+              border: '1px solid rgba(52,211,153,0.3)',
+              backdropFilter: 'blur(8px)',
             }}
             onMouseEnter={e => {
-              e.currentTarget.style.background = 'rgba(52,211,153,0.16)'
-              e.currentTarget.style.borderColor = 'rgba(52,211,153,0.4)'
+              e.currentTarget.style.background = 'rgba(52,211,153,0.2)'
+              e.currentTarget.style.borderColor = 'rgba(52,211,153,0.5)'
             }}
             onMouseLeave={e => {
-              e.currentTarget.style.background = 'rgba(52,211,153,0.1)'
-              e.currentTarget.style.borderColor = 'rgba(52,211,153,0.25)'
+              e.currentTarget.style.background = 'rgba(52,211,153,0.12)'
+              e.currentTarget.style.borderColor = 'rgba(52,211,153,0.3)'
             }}
           >
             View Nodes
           </a>
           <a
             href="#about"
-            className="px-8 py-3 rounded-full font-mono text-sm tracking-wider text-slate-400 hover:text-white transition-colors duration-200"
-            style={{ border: '1px solid rgba(255,255,255,0.08)' }}
+            className="px-8 py-3 rounded-full font-mono text-sm tracking-wider transition-all duration-200"
+            style={{
+              color: 'rgba(148,163,184,0.8)',
+              border: '1px solid rgba(255,255,255,0.1)',
+              background: 'rgba(6,6,8,0.5)',
+              backdropFilter: 'blur(8px)',
+            }}
+            onMouseEnter={e => { e.currentTarget.style.color = '#fff' }}
+            onMouseLeave={e => { e.currentTarget.style.color = 'rgba(148,163,184,0.8)' }}
           >
             About Me
           </a>
@@ -80,9 +90,9 @@ const Hero = () => {
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 opacity-30">
-        <div className="w-px h-10" style={{ background: 'linear-gradient(to bottom, rgba(52,211,153,0.6), transparent)' }} />
-        <span className="font-mono text-[9px] text-slate-600 tracking-[0.2em]">SCROLL</span>
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 opacity-40">
+        <div className="w-px h-10" style={{ background: 'linear-gradient(to bottom, rgba(52,211,153,0.7), transparent)' }} />
+        <span className="font-mono text-[9px] text-slate-500 tracking-[0.2em]">SCROLL</span>
       </div>
     </section>
   )
