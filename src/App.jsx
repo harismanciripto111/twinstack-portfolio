@@ -1,38 +1,28 @@
+import FloatingLines from './components/FloatingLines'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
 import Nodes from './components/Nodes'
 import Contact from './components/Contact'
-import Galaxy from './components/Galaxy'
 
 function App() {
   return (
-    <div className="min-h-screen text-gray-100" style={{ background: '#0a0a0a' }}>
-      {/* Galaxy WebGL background — fixed, covers entire viewport */}
-      <div style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100vw',
-        height: '100vh',
-        zIndex: 0,
-      }}>
-        <Galaxy
-          mouseRepulsion
-          mouseInteraction
-          density={1.2}
-          glowIntensity={0.35}
-          saturation={0.3}
-          hueShift={140}
-          twinkleIntensity={0.4}
-          rotationSpeed={0.05}
-          repulsionStrength={2}
-          speed={0.8}
-          transparent={false}
-        />
-      </div>
+    <div style={{ background: '#060608', minHeight: '100vh', position: 'relative' }}>
+      {/* WebGL FloatingLines background — fixed, behind everything */}
+      <FloatingLines
+        animationSpeed={0.35}
+        interactive={true}
+        parallax={true}
+        linesGradient={[
+          { r: 52/255,  g: 211/255, b: 153/255 },
+          { r: 125/255, g: 211/255, b: 252/255 },
+          { r: 167/255, g: 139/255, b: 250/255 },
+          { r: 52/255,  g: 211/255, b: 153/255 },
+        ]}
+        enabledWaves={{ top: true, middle: true, bottom: true }}
+      />
 
-      {/* Content sits on top of the galaxy */}
+      {/* Content layers above WebGL canvas */}
       <div style={{ position: 'relative', zIndex: 1 }}>
         <Navbar />
         <main>
