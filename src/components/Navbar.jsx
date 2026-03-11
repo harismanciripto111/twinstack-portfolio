@@ -14,32 +14,34 @@ const Navbar = () => {
       {/* Logo */}
       <span className="font-mono text-sm font-medium tracking-widest">
         <span style={{ color: '#34d399' }}>TWIN</span>
-        <span className="text-white/50">STACK</span>
+        <span className="text-white/40">STACK</span>
       </span>
 
-      {/* Center pill nav */}
+      {/* Center pill nav — always glass over animated bg */}
       <div
-        className={`hidden sm:flex items-center gap-1 px-2 py-1.5 rounded-full transition-all duration-500 ${
-          scrolled ? 'glass' : ''
-        }`}
+        className="hidden sm:flex items-center gap-1 px-2 py-1.5 rounded-full glass"
+        style={{
+          background: scrolled
+            ? 'rgba(6,6,8,0.85)'
+            : 'rgba(6,6,8,0.6)',
+          transition: 'background 0.4s ease',
+        }}
       >
         {['About', 'Nodes', 'Contact'].map((item) => (
           <a
             key={item}
             href={`#${item.toLowerCase()}`}
-            className="px-4 py-1.5 rounded-full font-mono text-xs text-slate-400 hover:text-white hover:bg-white/5 transition-all duration-200 tracking-wider"
+            className="px-4 py-1.5 rounded-full font-mono text-xs text-slate-400 hover:text-white transition-all duration-200 tracking-wider"
+            style={{ ':hover': { background: 'rgba(255,255,255,0.06)' } }}
           >
             {item}
           </a>
         ))}
       </div>
 
-      {/* Right — subtle status */}
+      {/* Right label */}
       <div className="w-[80px] flex justify-end">
-        <span
-          className="font-mono text-[10px] tracking-widest"
-          style={{ color: 'rgba(52,211,153,0.5)' }}
-        >
+        <span className="font-mono text-[10px] tracking-widest" style={{ color: 'rgba(52,211,153,0.45)' }}>
           v1.0
         </span>
       </div>
