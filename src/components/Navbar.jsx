@@ -10,30 +10,38 @@ const Navbar = () => {
   }, [])
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'glass border-b border-white/5 py-3' : 'py-5'
-      }`}
-    >
-      <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
-        <span className="font-mono text-sm text-[#00ff88] font-semibold tracking-widest">
-          TWINSTACK<span className="text-white/40">.EXP</span>
+    <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4">
+      {/* Logo */}
+      <span className="font-mono text-sm font-medium tracking-widest">
+        <span style={{ color: '#34d399' }}>TWIN</span>
+        <span className="text-white/50">STACK</span>
+      </span>
+
+      {/* Center pill nav */}
+      <div
+        className={`hidden sm:flex items-center gap-1 px-2 py-1.5 rounded-full transition-all duration-500 ${
+          scrolled ? 'glass' : ''
+        }`}
+      >
+        {['About', 'Nodes', 'Contact'].map((item) => (
+          <a
+            key={item}
+            href={`#${item.toLowerCase()}`}
+            className="px-4 py-1.5 rounded-full font-mono text-xs text-slate-400 hover:text-white hover:bg-white/5 transition-all duration-200 tracking-wider"
+          >
+            {item}
+          </a>
+        ))}
+      </div>
+
+      {/* Right — subtle status */}
+      <div className="w-[80px] flex justify-end">
+        <span
+          className="font-mono text-[10px] tracking-widest"
+          style={{ color: 'rgba(52,211,153,0.5)' }}
+        >
+          v1.0
         </span>
-        <div className="hidden sm:flex items-center gap-8">
-          {['About', 'Nodes', 'Contact'].map((item) => (
-            <a
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              className="font-mono text-xs text-gray-400 hover:text-[#00ff88] transition-colors tracking-wider uppercase"
-            >
-              {item}
-            </a>
-          ))}
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-[#00ff88] pulse-dot" />
-          <span className="font-mono text-xs text-gray-500">online</span>
-        </div>
       </div>
     </nav>
   )
