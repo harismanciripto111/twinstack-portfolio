@@ -29,18 +29,11 @@ const Contact = () => {
     <section id="contact" className="py-36 px-6">
       <div className="max-w-5xl mx-auto">
 
-        {/* Section label */}
         <div className="flex items-center gap-4 mb-20">
-          <span
-            className="font-mono text-[10px] tracking-[0.2em] uppercase"
-            style={{ color: 'rgba(52,211,153,0.7)' }}
-          >
+          <span className="font-mono text-[10px] tracking-[0.2em] uppercase" style={{ color: 'rgba(52,211,153,0.7)' }}>
             contact
           </span>
-          <div
-            className="flex-1 h-px"
-            style={{ background: 'linear-gradient(90deg, rgba(52,211,153,0.15), transparent)' }}
-          />
+          <div className="flex-1 h-px" style={{ background: 'linear-gradient(90deg, rgba(52,211,153,0.15), transparent)' }} />
         </div>
 
         <div className="text-center max-w-xl mx-auto">
@@ -48,12 +41,11 @@ const Contact = () => {
             Let&apos;s{' '}
             <ShinyText text="Connect" speed={4} className="font-bold" />
           </h2>
-          <p className="text-base leading-relaxed mb-16" style={{ color: '#475569' }}>
+          <p className="text-base leading-relaxed mb-16" style={{ color: 'rgba(71,85,105,0.9)' }}>
             Fellow node runner? Got a testnet tip or want to collaborate?
             Always down to talk crypto, AI, and infra.
           </p>
 
-          {/* Social links row */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-20">
             {links.map(({ label, handle, href, icon, color }) => (
               <a
@@ -63,17 +55,19 @@ const Contact = () => {
                 rel="noopener noreferrer"
                 className="group flex items-center gap-4 px-6 py-4 rounded-2xl w-full sm:w-auto transition-all duration-200"
                 style={{
-                  background: 'rgba(255,255,255,0.02)',
-                  border: '1px solid rgba(255,255,255,0.06)',
+                  background: 'rgba(6,6,8,0.65)',
+                  border: '1px solid rgba(255,255,255,0.07)',
+                  backdropFilter: 'blur(14px)',
+                  WebkitBackdropFilter: 'blur(14px)',
                   minWidth: '190px',
                 }}
                 onMouseEnter={e => {
-                  e.currentTarget.style.borderColor = `${color}30`
-                  e.currentTarget.style.background = `${color}08`
+                  e.currentTarget.style.borderColor = `${color}35`
+                  e.currentTarget.style.background = `rgba(6,6,8,0.85)`
                 }}
                 onMouseLeave={e => {
-                  e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)'
-                  e.currentTarget.style.background = 'rgba(255,255,255,0.02)'
+                  e.currentTarget.style.borderColor = 'rgba(255,255,255,0.07)'
+                  e.currentTarget.style.background = 'rgba(6,6,8,0.65)'
                 }}
               >
                 <span
@@ -94,7 +88,6 @@ const Contact = () => {
             ))}
           </div>
 
-          {/* Footer */}
           <div style={{ borderTop: '1px solid rgba(255,255,255,0.05)' }} className="pt-10">
             <p className="font-mono text-[11px] tracking-widest" style={{ color: '#1e293b' }}>
               TWINSTACK EXPLORER &mdash; {new Date().getFullYear()}
