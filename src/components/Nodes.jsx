@@ -66,32 +66,46 @@ const nodes = [
 ]
 
 const statusConfig = {
-  active: { label: 'ACTIVE', class: 'status-active' },
-  ended: { label: 'ENDED', class: 'status-ended' },
-  upcoming: { label: 'UPCOMING', class: 'status-upcoming' },
+  active: { label: 'Active', cls: 'status-active' },
+  ended: { label: 'Ended', cls: 'status-ended' },
+  upcoming: { label: 'Upcoming', cls: 'status-upcoming' },
 }
 
 const NodeCard = ({ node }) => {
-  const status = statusConfig[node.status]
+  const { label, cls } = statusConfig[node.status]
   return (
-    <div className="glass rounded-2xl p-6 flex flex-col gap-4 hover:scale-[1.02] transition-transform duration-300 group">
+    <div
+      className="flex flex-col gap-4 p-6 rounded-2xl transition-all duration-200"
+      style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)' }}
+      onMouseEnter={e => {
+        e.currentTarget.style.borderColor = 'rgba(52,211,153,0.18)'
+        e.currentTarget.style.background = 'rgba(52,211,153,0.02)'
+      }}
+      onMouseLeave={e => {
+        e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)'
+        e.currentTarget.style.background = 'rgba(255,255,255,0.02)'
+      }}
+    >
       <div className="flex items-start justify-between gap-3">
         <div>
-          <h3 className="text-white font-bold text-lg group-hover:text-[#00ff88] transition-colors">
-            {node.name}
-          </h3>
-          <p className="font-mono text-xs text-gray-500 mt-0.5">{node.chain}</p>
+          <h3 className="text-white font-semibold text-base">{node.name}</h3>
+          <p className="font-mono text-[11px] mt-0.5" style={{ color: '#475569' }}>{node.chain}</p>
         </div>
-        <span className={`font-mono text-[10px] px-2.5 py-1 rounded-full shrink-0 ${status.class}`}>
-          {status.label}
+        <span className={`font-mono text-[10px] px-2.5 py-1 rounded-full shrink-0 ${cls}`}>
+          {label}
         </span>
       </div>
 
-      <p className="text-gray-400 text-sm leading-relaxed">{node.description}</p>
+      <p className="text-sm leading-relaxed flex-1" style={{ color: '#64748b' }}>
+        {node.description}
+      </p>
 
-      <div className="flex items-center justify-between mt-auto pt-2 border-t border-white/5">
-        <span className="font-mono text-xs text-[#00e5ff]">{node.type}</span>
-        <span className="font-mono text-xs text-gray-600">{node.reward}</span>
+      <div
+        className="flex items-center justify-between pt-4"
+        style={{ borderTop: '1px solid rgba(255,255,255,0.05)' }}
+      >
+        <span className="font-mono text-[11px]" style={{ color: '#7dd3fc' }}>{node.type}</span>
+        <span className="font-mono text-[11px]" style={{ color: '#334155' }}>{node.reward}</span>
       </div>
     </div>
   )
@@ -102,52 +116,55 @@ const Nodes = () => {
   const endedNodes = nodes.filter((n) => n.status === 'ended')
 
   return (
-    <section id="nodes" className="py-32 px-6 relative">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#00ff88]/3 rounded-full blur-3xl pointer-events-none" />
+    <section id="nodes" className="py-36 px-6">
+      <div className="max-w-5xl mx-auto">
 
-      <div className="max-w-6xl mx-auto relative z-10">
-        <div className="flex items-center gap-4 mb-4">
-          <span className="font-mono text-xs text-[#00ff88] tracking-widest uppercase">// nodes</span>
-          <div className="flex-1 h-px bg-gradient-to-r from-[#00ff88]/30 to-transparent" />
+        <div className="flex items-center gap-4 mb-20">
+          <span className="font-mono text-[10px] tracking-[0.2em] uppercase" style={{ color: 'rgba(52,211,153,0.7)' }}>
+            nodes
+          </span>
+          <div className="flex-1 h-px" style={{ background: 'linear-gradient(90deg, rgba(52,211,153,0.15), transparent)' }} />
         </div>
 
-        <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
-          Testnet <span className="text-[#00ff88]">Nodes</span>
+        <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4 tracking-tight">
+          Testnet Nodes
         </h2>
-        <p className="text-gray-500 mb-16 max-w-xl">
-          A running log of every testnet and blockchain network I've participated in.
-          Updated as new programs launch.
+        <p className="mb-16 max-w-lg text-base" style={{ color: '#475569' }}>
+          A running log of every testnet and blockchain network participated in.
         </p>
 
-        <div className="mb-12">
-          <div className="flex items-center gap-3 mb-6">
-            <span className="w-2 h-2 rounded-full bg-[#00ff88] pulse-dot" />
-            <span className="font-mono text-sm text-gray-400">Currently Running</span>
-            <span className="font-mono text-xs text-[#00ff88] bg-[#00ff88]/10 px-2 py-0.5 rounded-full">
+        <div className="mb-16">
+          <div className="flex items-center gap-3 mb-8">
+            <span className="w-1.5 h-1.5 rounded-full pulse-dot" style={{ background: '#34d399' }} />
+            <span className="font-mono text-xs tracking-wider" style={{ color: '#94a3b8' }}>Currently Running</span>
+            <span
+              className="font-mono text-[10px] px-2 py-0.5 rounded-full"
+              style={{ color: '#34d399', background: 'rgba(52,211,153,0.08)', border: '1px solid rgba(52,211,153,0.15)' }}
+            >
               {activeNodes.length}
             </span>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {activeNodes.map((node) => (
-              <NodeCard key={node.name} node={node} />
-            ))}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {activeNodes.map((node) => <NodeCard key={node.name} node={node} />)}
           </div>
         </div>
 
-        <div>
-          <div className="flex items-center gap-3 mb-6">
-            <span className="w-2 h-2 rounded-full bg-gray-500" />
-            <span className="font-mono text-sm text-gray-400">Past Testnets</span>
-            <span className="font-mono text-xs text-gray-500 bg-gray-500/10 px-2 py-0.5 rounded-full">
+        <div className="opacity-60">
+          <div className="flex items-center gap-3 mb-8">
+            <span className="w-1.5 h-1.5 rounded-full" style={{ background: '#334155' }} />
+            <span className="font-mono text-xs tracking-wider" style={{ color: '#475569' }}>Past Testnets</span>
+            <span
+              className="font-mono text-[10px] px-2 py-0.5 rounded-full"
+              style={{ color: '#475569', background: 'rgba(71,85,105,0.1)', border: '1px solid rgba(71,85,105,0.2)' }}
+            >
               {endedNodes.length}
             </span>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 opacity-70">
-            {endedNodes.map((node) => (
-              <NodeCard key={node.name} node={node} />
-            ))}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {endedNodes.map((node) => <NodeCard key={node.name} node={node} />)}
           </div>
         </div>
+
       </div>
     </section>
   )
