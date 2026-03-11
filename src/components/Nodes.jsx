@@ -66,8 +66,8 @@ const nodes = [
 ]
 
 const statusConfig = {
-  active: { label: 'Active', cls: 'status-active' },
-  ended: { label: 'Ended', cls: 'status-ended' },
+  active:   { label: 'Active',   cls: 'status-active' },
+  ended:    { label: 'Ended',    cls: 'status-ended' },
   upcoming: { label: 'Upcoming', cls: 'status-upcoming' },
 }
 
@@ -76,14 +76,19 @@ const NodeCard = ({ node }) => {
   return (
     <div
       className="flex flex-col gap-4 p-6 rounded-2xl transition-all duration-200"
-      style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)' }}
+      style={{
+        background: 'rgba(6,6,8,0.65)',
+        border: '1px solid rgba(255,255,255,0.07)',
+        backdropFilter: 'blur(14px)',
+        WebkitBackdropFilter: 'blur(14px)',
+      }}
       onMouseEnter={e => {
-        e.currentTarget.style.borderColor = 'rgba(52,211,153,0.18)'
-        e.currentTarget.style.background = 'rgba(52,211,153,0.02)'
+        e.currentTarget.style.borderColor = 'rgba(52,211,153,0.22)'
+        e.currentTarget.style.background = 'rgba(6,6,8,0.82)'
       }}
       onMouseLeave={e => {
-        e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)'
-        e.currentTarget.style.background = 'rgba(255,255,255,0.02)'
+        e.currentTarget.style.borderColor = 'rgba(255,255,255,0.07)'
+        e.currentTarget.style.background = 'rgba(6,6,8,0.65)'
       }}
     >
       <div className="flex items-start justify-between gap-3">
@@ -96,7 +101,7 @@ const NodeCard = ({ node }) => {
         </span>
       </div>
 
-      <p className="text-sm leading-relaxed flex-1" style={{ color: '#64748b' }}>
+      <p className="text-sm leading-relaxed flex-1" style={{ color: 'rgba(100,116,139,0.9)' }}>
         {node.description}
       </p>
 
@@ -112,8 +117,8 @@ const NodeCard = ({ node }) => {
 }
 
 const Nodes = () => {
-  const activeNodes = nodes.filter((n) => n.status === 'active')
-  const endedNodes = nodes.filter((n) => n.status === 'ended')
+  const activeNodes = nodes.filter(n => n.status === 'active')
+  const endedNodes  = nodes.filter(n => n.status === 'ended')
 
   return (
     <section id="nodes" className="py-36 px-6">
@@ -126,10 +131,8 @@ const Nodes = () => {
           <div className="flex-1 h-px" style={{ background: 'linear-gradient(90deg, rgba(52,211,153,0.15), transparent)' }} />
         </div>
 
-        <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4 tracking-tight">
-          Testnet Nodes
-        </h2>
-        <p className="mb-16 max-w-lg text-base" style={{ color: '#475569' }}>
+        <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4 tracking-tight">Testnet Nodes</h2>
+        <p className="mb-16 max-w-lg text-base" style={{ color: 'rgba(71,85,105,0.9)' }}>
           A running log of every testnet and blockchain network participated in.
         </p>
 
@@ -145,11 +148,11 @@ const Nodes = () => {
             </span>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-            {activeNodes.map((node) => <NodeCard key={node.name} node={node} />)}
+            {activeNodes.map(node => <NodeCard key={node.name} node={node} />)}
           </div>
         </div>
 
-        <div className="opacity-60">
+        <div className="opacity-55">
           <div className="flex items-center gap-3 mb-8">
             <span className="w-1.5 h-1.5 rounded-full" style={{ background: '#334155' }} />
             <span className="font-mono text-xs tracking-wider" style={{ color: '#475569' }}>Past Testnets</span>
@@ -161,7 +164,7 @@ const Nodes = () => {
             </span>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-            {endedNodes.map((node) => <NodeCard key={node.name} node={node} />)}
+            {endedNodes.map(node => <NodeCard key={node.name} node={node} />)}
           </div>
         </div>
 
