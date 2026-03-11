@@ -24,14 +24,14 @@ const About = () => {
 
         <div className="grid md:grid-cols-2 gap-20 items-start">
 
-          {/* Left — text */}
+          {/* Left — bio text */}
           <div>
             <h2 className="text-4xl sm:text-5xl font-bold text-white mb-8 leading-tight tracking-tight">
               Who is{' '}
               <ShinyText text="Twinstack?" speed={5} className="font-bold" />
             </h2>
 
-            <div className="space-y-5 leading-relaxed" style={{ color: '#94a3b8' }}>
+            <div className="space-y-5 leading-relaxed" style={{ color: 'rgba(148,163,184,0.8)' }}>
               <p>
                 Just a hobbyist deep in the trenches of blockchain infrastructure —
                 spinning up nodes, validating testnets, and documenting every step
@@ -58,8 +58,9 @@ const About = () => {
                   className="font-mono text-[11px] px-3 py-1 rounded-full"
                   style={{
                     color: '#64748b',
-                    border: '1px solid rgba(255,255,255,0.06)',
-                    background: 'rgba(255,255,255,0.02)',
+                    border: '1px solid rgba(255,255,255,0.07)',
+                    background: 'rgba(6,6,8,0.6)',
+                    backdropFilter: 'blur(8px)',
                   }}
                 >
                   #{tag.toLowerCase().replace(' ', '_')}
@@ -68,18 +69,21 @@ const About = () => {
             </div>
           </div>
 
-          {/* Right — stats with left accent border */}
-          <div className="grid grid-cols-2 gap-px" style={{ background: 'rgba(255,255,255,0.05)' }}>
+          {/* Right — stat grid with glass overlay */}
+          <div
+            className="grid grid-cols-2 gap-px rounded-2xl overflow-hidden"
+            style={{ background: 'rgba(255,255,255,0.06)' }}
+          >
             {stats.map(({ label, value }) => (
               <div
                 key={label}
                 className="p-8 flex flex-col gap-2"
-                style={{ background: '#0c0c0e' }}
+                style={{
+                  background: 'rgba(6,6,8,0.75)',
+                  backdropFilter: 'blur(16px)',
+                }}
               >
-                <div
-                  className="text-5xl font-bold font-mono"
-                  style={{ color: '#34d399' }}
-                >
+                <div className="text-5xl font-bold font-mono" style={{ color: '#34d399' }}>
                   {value}
                 </div>
                 <div className="font-mono text-xs tracking-wide" style={{ color: '#475569' }}>
